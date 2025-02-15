@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Saved Recipes</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+    <!-- ✅ Navbar -->
+    <nav class="navbar">
+        <div class="logo">Recipe Finder</div>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="./saved-recipes.html">Saved Recipes</a></li>
+            <div>
+                <input type="checkbox" class="checkbox" id="checkbox">
+                <label for="checkbox" class="checkbox-label">
+                  <i class="fas fa-moon">🌙</i>
+                  <i class="fas fa-sun">☀️</i>
+                  <span class="ball"></span>
+                </label>
+              </div>
+        </ul>
+    </nav>>
+
+    <div class="container">
+        <h1>Saved Recipes</h1>
+        <div id="saved-list"></div>
+    </div>
+
+    <script src="js/saved.js"></script>
+</body>
+</html>

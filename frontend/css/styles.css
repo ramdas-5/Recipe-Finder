@@ -1,0 +1,490 @@
+/* ✅ General Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+    transition: all 0.3s ease-in-out; /* Smooth animation for everything */
+}
+
+* ::selection{
+    color: rgb(156, 28, 182);
+    background-color: rgb(255, 242, 0);
+}
+
+body {
+    background-color: #f8f9fa;
+    color: #333;
+    text-align: center;
+    padding: 20px;
+}
+
+/* ✅ Dark Mode */
+.checkbox {
+    display: none;
+}
+
+.checkbox-label {
+    width: 50px;
+    height: 24px;
+    background: #ccc;
+    display: flex;
+    border-radius: 50px;
+    align-items: center;
+    justify-content: space-between;
+    padding: 5px;
+    position: relative;
+    cursor: pointer;
+}
+
+.checkbox-label .ball {
+    width: 20px;
+    height: 20px;
+    background: white;
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    border-radius: 50%;
+}
+
+.checkbox:checked + .checkbox-label {
+    background: #222;
+}
+
+.checkbox:checked + .checkbox-label .ball {
+    transform: translateX(26px);
+}
+
+/* ✅ Dark Mode Hover */
+.checkbox-label:hover {
+    background: rgba(255, 127, 80, 0.3);
+}
+
+/* ✅ Navbar */
+.navbar {
+    background-color: #ff7f50;
+    padding: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.navbar .logo {
+    font-size: 24px;
+    font-weight: bold;
+    color: white;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+}
+
+.nav-links li {
+    margin: 0 15px;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: white;
+    font-size: 18px;
+    padding: 5px 10px;
+    border-radius: 5px;
+}
+
+.nav-links a:hover {
+    background-color: white;
+    color: #ff7f50;
+    padding: 6px 12px;
+}
+
+/* ✅ Search Section */
+#search-section {
+    margin: 40px 0;
+    text-align: center;
+}
+
+#search-section h1 {
+    font-size: 28px;
+}
+
+/* ✅ Search Input */
+#search {
+    width: 60%;
+    padding: 12px;
+    font-size: 16px;
+    border: 2px solid #ff7f50;
+    border-radius: 5px;
+}
+
+#search:hover,
+#search:focus {
+    border-color: #e76e3c;
+    box-shadow: 0px 0px 10px rgba(231, 110, 60, 0.5);
+}
+
+/* ✅ Search Button */
+#sbtn {
+    padding: 12px 20px;
+    font-size: 16px;
+    border: none;
+    background-color: #ff7f50;
+    color: white;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+#sbtn:hover {
+    background-color: #e76e3c;
+    transform: scale(1.05);
+    box-shadow: 0px 5px 15px rgba(231, 110, 60, 0.4);
+}
+
+#sbtn:active {
+    transform: scale(0.95);
+    box-shadow: 0px 2px 8px rgba(231, 110, 60, 0.2);
+}
+
+/* ✅ Recipe List */
+#recipe-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.recipe-card {
+    width: 250px;
+    background: white;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.recipe-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.15);
+}
+
+.recipe-card img {
+    width: 100%;
+    border-radius: 5px;
+}
+
+.recipe-card h3 {
+    margin: 10px 0;
+}
+
+.recipe-card a {
+    display: inline-block;
+    text-decoration: none;
+    color: white;
+    background: #ff7f50;
+    padding: 8px 12px;
+    border-radius: 5px;
+}
+
+.recipe-card a:hover {
+    background: #e76e3c;
+}
+
+/* ✅ Saved Recipes */
+#saved-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.saved-recipe {
+    width: 250px;
+    background: white;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.saved-recipe:hover {
+    transform: scale(1.05);
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.15);
+}
+
+.saved-recipe img {
+    width: 100%;
+    border-radius: 5px;
+}
+
+.saved-recipe h3 {
+    margin: 10px 0;
+}
+
+.saved-recipe button {
+    margin-top: 10px;
+    background-color: red;
+}
+
+.saved-recipe button:hover {
+    background-color: darkred;
+}
+
+/* ✅ Animations for Buttons */
+button {
+    padding: 10px 15px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+button:hover {
+    transform: scale(1.05);
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.15);
+}
+
+/* ✅ Responsive Design */
+@media (max-width: 600px) {
+    #search {
+        width: 80%;
+    }
+
+    .recipe-card,
+    .saved-recipe {
+        width: 100%;
+    }
+
+    .navbar {
+        flex-direction: column;
+    }
+
+    .nav-links {
+        margin-top: 10px;
+    }
+}
+
+
+
+/* Dark Mode Toggle */
+.checkbox {
+    display: none;
+}
+
+.checkbox-label {
+    width: 50px;
+    height: 24px;
+    background: #ccc;
+    display: flex;
+    border-radius: 50px;
+    align-items: center;
+    justify-content: space-between;
+    padding: 5px;
+    position: relative;
+    cursor: pointer;
+    transition: background 0.3s ease-in-out;
+}
+
+.checkbox-label .ball {
+    width: 20px;
+    height: 20px;
+    background: white;
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    border-radius: 50%;
+    transition: transform 0.3s ease-in-out;
+}
+
+.checkbox:checked + .checkbox-label {
+    background: #222;
+}
+
+.checkbox:checked + .checkbox-label .ball {
+    transform: translateX(26px);
+}
+
+/* Dark Mode Styles */
+.dark-mode {
+    background-color: #121212;
+    color: rgb(233, 12, 86);
+    transition: background 0.3s ease-in-out, color 0.3s ease-in-out;
+}
+
+
+/* ✅ General Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+    transition: all 0.3s ease-in-out; /* Smooth animation for everything */
+}
+
+body {
+    background-color: #f8f9fa;
+    color: #333;
+    text-align: center;
+    padding: 20px;
+}
+
+/* ✅ Dark Mode */
+.checkbox {
+    display: none;
+}
+
+.checkbox-label {
+    width: 50px;
+    height: 24px;
+    background: #ccc;
+    display: flex;
+    border-radius: 50px;
+    align-items: center;
+    justify-content: space-between;
+    padding: 5px;
+    position: relative;
+    cursor: pointer;
+}
+
+.checkbox-label .ball {
+    width: 20px;
+    height: 20px;
+    background: white;
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    border-radius: 50%;
+}
+
+.checkbox:checked + .checkbox-label {
+    background: #222;
+}
+
+.checkbox:checked + .checkbox-label .ball {
+    transform: translateX(26px);
+}
+
+/* ✅ Dark Mode Hover */
+.checkbox-label:hover {
+    background: rgba(255, 127, 80, 0.3);
+}
+
+/* ✅ Navbar */
+.navbar {
+    background-color: #ff7f50;
+    padding: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.navbar .logo {
+    font-size: 24px;
+    font-weight: bold;
+    color: white;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+}
+
+.nav-links li {
+    margin: 0 15px;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: white;
+    font-size: 18px;
+    padding: 5px 10px;
+    border-radius: 5px;
+}
+
+.nav-links a:hover {
+    background-color: white;
+    color: #ff7f50;
+    padding: 6px 12px;
+}
+
+/* ✅ Recipe Details Container */
+.container {
+    max-width: 800px;
+    margin: 40px auto;
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* ✅ Recipe Card */
+.recipe-container {
+    text-align: left;
+    background: white;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.recipe-container:hover {
+    transform: scale(1.02);
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.15);
+}
+
+/* ✅ Recipe Image */
+.recipe-container img {
+    width: 100%;
+    border-radius: 10px;
+}
+
+/* ✅ Recipe Title */
+.recipe-container h2 {
+    margin: 15px 0;
+}
+
+/* ✅ Ingredients & Steps */
+.recipe-container ul {
+    list-style: none;
+    padding: 0;
+}
+
+.recipe-container ul li {
+    background: #ffe0cc;
+    padding: 8px;
+    border-radius: 5px;
+    margin: 5px 0;
+}
+
+/* ✅ Back Button */
+.back-button {
+    margin-top: 20px;
+    padding: 12px 20px;
+    font-size: 16px;
+    border: none;
+    background-color: #ff7f50;
+    color: white;
+    cursor: pointer;
+    border-radius: 5px;
+    display: inline-block;
+}
+
+.back-button:hover {
+    background-color: #e76e3c;
+    transform: scale(1.05);
+    box-shadow: 0px 5px 15px rgba(231, 110, 60, 0.4);
+}
+
+.back-button:active {
+    transform: scale(0.95);
+    box-shadow: 0px 2px 8px rgba(231, 110, 60, 0.2);
+}
+
+/* ✅ Responsive Design */
+@media (max-width: 600px) {
+    .container {
+        width: 90%;
+    }
+
+    .recipe-container {
+        text-align: center;
+    }
+}
