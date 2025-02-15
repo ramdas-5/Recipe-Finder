@@ -1,11 +1,20 @@
+const BACKEND_URL = "https://recipe-finder-z14f.onrender.com"; // ✅ Use your deployed backend
+
 async function searchRecipes() {
     const searchInput = document.getElementById("search").value.trim();
 
     try {
-        const response = await fetch(`http://localhost:5000/api/recipes/search?ingredient=${searchInput}`);
-        const data = await response.json();
+        console.log(`Searching for: ${searchInput}`);
 
-        console.log("Frontend Received Data:", data); // ✅ Debug response in browser console
+        const response = await fetch(`${BACKEND_URL}/api/recipes/search?ingredient=${searchInput}`);
+        console.log("Response Status:", response.status);
+
+        if (!response.ok) {
+            throw new Error(`HTTP Error! Status: ${response.status}`);
+        }
+
+        const data = await response.json();
+        console.log("Received Data:", data);
 
         let recipesHTML = "";
         if (data.meals && Array.isArray(data.meals) && data.meals.length > 0) {
@@ -26,12 +35,12 @@ async function searchRecipes() {
         document.getElementById("recipe-list").innerHTML = recipesHTML;
     } catch (error) {
         console.error("Error fetching recipes:", error);
-        document.getElementById("recipe-list").innerHTML = "<p>Failed to load recipes.</p>";
+        document.getElementById("recipe-list").innerHTML = `<p>Failed to load recipes. ${error.message}</p>`;
     }
 }
 
 
-
+// ✅ Dark Mode Toggle
 const checkbox = document.getElementById("checkbox");
 
 // Check user preference from localStorage

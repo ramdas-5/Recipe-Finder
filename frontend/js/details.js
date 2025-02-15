@@ -1,3 +1,5 @@
+const BACKEND_URL = "https://recipe-finder-z14f.onrender.com"; // ✅ Use deployed backend
+
 const params = new URLSearchParams(window.location.search);
 const recipeId = params.get("id");
 
@@ -8,9 +10,14 @@ async function fetchRecipeDetails() {
     }
 
     try {
-        const response = await fetch(`http://localhost:5000/api/recipes/details/${recipeId}`);
-        const data = await response.json();
+        const response = await fetch(`${BACKEND_URL}/api/recipes/details/${recipeId}`);
+        console.log("Response Status:", response.status);
 
+        if (!response.ok) {
+            throw new Error(`HTTP Error! Status: ${response.status}`);
+        }
+
+        const data = await response.json();
         console.log("Received Recipe Details:", data); // ✅ Debug API response
 
         if (!data || Object.keys(data).length === 0) {
@@ -28,13 +35,13 @@ async function fetchRecipeDetails() {
         `;
     } catch (error) {
         console.error("Error fetching recipe details:", error);
-        document.getElementById("recipe-details").innerHTML = "<p>Failed to load recipe details.</p>";
+        document.getElementById("recipe-details").innerHTML = `<p>Failed to load recipe details. ${error.message}</p>`;
     }
 }
 
 async function saveRecipe(id) {
     try {
-        const response = await fetch(`http://localhost:5000/api/recipes/save`, {
+        const response = await fetch(`${BACKEND_URL}/api/recipes/save`, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ recipeId: id })
@@ -51,7 +58,7 @@ async function saveRecipe(id) {
 // Call function on page load
 document.addEventListener("DOMContentLoaded", fetchRecipeDetails);
 
-
+// ✅ Dark Mode Toggle
 const checkbox = document.getElementById("checkbox");
 
 // Check user preference from localStorage

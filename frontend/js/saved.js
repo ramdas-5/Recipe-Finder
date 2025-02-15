@@ -1,8 +1,15 @@
+const BACKEND_URL = "https://recipe-finder-z14f.onrender.com"; // ✅ Use deployed backend
+
 async function fetchSavedRecipes() {
     try {
-        const response = await fetch("http://localhost:5000/api/recipes/saved");
-        const savedRecipes = await response.json();
+        const response = await fetch(`${BACKEND_URL}/api/recipes/saved`);
+        console.log("Response Status:", response.status);
 
+        if (!response.ok) {
+            throw new Error(`HTTP Error! Status: ${response.status}`);
+        }
+
+        const savedRecipes = await response.json();
         console.log("Saved Recipes:", savedRecipes); // ✅ Debugging
 
         let savedHTML = "";
@@ -30,13 +37,19 @@ async function fetchSavedRecipes() {
         document.getElementById("saved-list").innerHTML = savedHTML;
     } catch (error) {
         console.error("Error fetching saved recipes:", error);
-        document.getElementById("saved-list").innerHTML = "<p>Failed to load saved recipes.</p>";
+        document.getElementById("saved-list").innerHTML = `<p>Failed to load saved recipes. ${error.message}</p>`;
     }
 }
 
 async function getRecipeDetails(recipeId) {
     try {
-        const response = await fetch(`http://localhost:5000/api/recipes/details/${recipeId}`);
+        const response = await fetch(`${BACKEND_URL}/api/recipes/details/${recipeId}`);
+        console.log(`Fetching details for recipe ID: ${recipeId}, Status: ${response.status}`);
+
+        if (!response.ok) {
+            throw new Error(`HTTP Error! Status: ${response.status}`);
+        }
+
         const data = await response.json();
         return data || null;
     } catch (error) {
@@ -49,9 +62,13 @@ async function removeRecipe(id) {
     if (!confirm("Are you sure you want to remove this recipe?")) return;
 
     try {
-        const response = await fetch(`http://localhost:5000/api/recipes/remove/${id}`, {
+        const response = await fetch(`${BACKEND_URL}/api/recipes/remove/${id}`, {
             method: "DELETE",
         });
+
+        if (!response.ok) {
+            throw new Error(`HTTP Error! Status: ${response.status}`);
+        }
 
         const result = await response.json();
         alert(result.message || "Recipe removed successfully!");
@@ -60,15 +77,14 @@ async function removeRecipe(id) {
         fetchSavedRecipes();
     } catch (error) {
         console.error("Error removing recipe:", error);
-        alert("Failed to remove recipe.");
+        alert(`Failed to remove recipe. ${error.message}`);
     }
 }
 
 // Load saved recipes on page load
 document.addEventListener("DOMContentLoaded", fetchSavedRecipes);
 
-
-
+// ✅ Dark Mode Toggle
 const checkbox = document.getElementById("checkbox");
 
 // Check user preference from localStorage
