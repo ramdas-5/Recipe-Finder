@@ -57,7 +57,7 @@ Yumlytic/
    ```
 
 ## 🌍 Deployment
-- **Live Demo**: [Yumlytic on Render](https://recipe-finder-z14f.onrender.com)
+- **Live Demo**: [Yumlytic on Render](https://recipe-finder-1-8z3b.onrender.com)
 - **Backend URL**: `https://your-backend-url.onrender.com`
 
 ## 🎯 Future Enhancements
